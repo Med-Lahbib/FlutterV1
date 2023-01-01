@@ -1,8 +1,6 @@
-import 'update_post_btn_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/post.dart';
-import 'delete_post_btn_widget.dart';
 
 class PostDetailWidget extends StatelessWidget {
   final Post post;
@@ -38,10 +36,7 @@ class PostDetailWidget extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              UpdatePostBtnWidget(post: post),
-              DeletePostBtnWidget(postId: post.id!)
-            ],
+            
           )
         ],
       ),

@@ -52,7 +52,6 @@ class _PostListWidgetState extends State<PostListWidget> {
             itemBuilder: (context, index) {
               return Card(
                 child: InkWell(
-
                   onTap: () {
                     Navigator.push(
                       context,
@@ -66,7 +65,7 @@ class _PostListWidgetState extends State<PostListWidget> {
                     child: Row(
                       children: [
                         Image.network(
-                          posts[index].imageURL!,
+                          posts[index].image!,
                           width: 50,
                           height: 50,
                         ),

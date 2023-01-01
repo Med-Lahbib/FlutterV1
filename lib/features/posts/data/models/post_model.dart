@@ -4,25 +4,25 @@ class PostModel extends Post {
   const PostModel(
       {int? id,
       final String? name,
-      final String? trainerName,
+      final String? userId,
       final String? description,
-      final String? imageURL,
+      final String? image,
       final String? date})
       : super(
             id: id,
             name: name,
-            trainerName: trainerName,
+            userId: userId,
             description: description,
-            imageURL: imageURL,
+            image: image,
             date: date);
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
       id: json['id'],
       name: json['name'],
-      trainerName: json['trainerName'],
+      userId: json['userId'],
       description: json['description'],
-      imageURL: json['imageURL'],
+      image: json['image'],
       date: json['date'],
     );
   }
@@ -30,9 +30,9 @@ class PostModel extends Post {
     return {
       'id': id,
       'name': name,
-      'trainerName': trainerName,
+      'userId': userId,
       'description': description,
-      'imageURL': imageURL,
+      'image': image,
       'date': date,
     };
   }

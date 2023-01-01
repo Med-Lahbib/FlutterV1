@@ -3,21 +3,20 @@ import 'package:equatable/equatable.dart';
 class Post extends Equatable {
   final int? id;
   final String? name;
-  final String? trainerName;
+  final String? userId;
   final String? description;
-  final String? imageURL;
+  final String? image;
   final String? date;
 
   const Post({
     this.id,
     required this.name,
-    required this.trainerName,
+    required this.userId,
     required this.description,
-    required this.imageURL,
+    required this.image,
     required this.date,
   });
 
   @override
-  List<Object?> get props =>
-      [id, name, trainerName, description, imageURL, date];
+  List<Object?> get props => [id, name, userId, description, image, date];
 }
