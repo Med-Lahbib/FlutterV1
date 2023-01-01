@@ -66,8 +66,8 @@ class _PostListWidgetState extends State<PostListWidget> {
                       children: [
                         Image.network(
                           posts[index].image!,
-                          width: 50,
-                          height: 50,
+                          width: 80,
+                          
                         ),
                         const SizedBox(width: 10),
                         Column(
@@ -79,10 +79,22 @@ class _PostListWidgetState extends State<PostListWidget> {
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
+                            Text("By "+
+                              posts[index].userId!,
+                              style: const TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
+                            ),
+                            const SizedBox(height: 5),
                             Text(
                               posts[index].description!,
                               style: const TextStyle(fontSize: 16),
                             ),
+                            Text(
+                              posts[index].date!,
+                              style: const TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 5),
                           ],
                         ),
                       ],
@@ -96,5 +108,8 @@ class _PostListWidgetState extends State<PostListWidget> {
         ),
       ],
     );
+
+    
   }
+  
 }

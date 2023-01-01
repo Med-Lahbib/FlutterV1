@@ -24,7 +24,7 @@ class AppRouter {
         path: '/',
         name: 'authentication',
         builder: (context, state) {
-          return LoginPage();
+          return LoginPage();//PostsPage()
         },
         routes: [
           GoRoute(

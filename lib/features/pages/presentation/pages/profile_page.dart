@@ -4,6 +4,8 @@ import 'package:projectv1/features/auth/data/models/user_model.dart';
 import '/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
+import 'package:validators/validators.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -336,10 +338,10 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
         currentIndex: 1,
         onTap: (int index) {
-          /*if (index == 0) {
+          if (index == 0) {
             // Navigate to the Courses screen
-            Navigator.of(context).pushNamed(Courses.routeName);
-          }*/
+            GoRouter.of(context).goNamed("Posts");
+          }
           if (index == 2) {
             // Handle logout here
             BlocProvider.of<AuthBloc>(context).add(LogoutEvent());
