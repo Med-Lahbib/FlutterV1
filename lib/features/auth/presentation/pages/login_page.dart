@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthenticatedState) {
-          GoRouter.of(context).goNamed('profile');
+          GoRouter.of(context).goNamed('Posts');
         } else if (state is AuthErrorState) {
           SnackBarMessage()
               .showErrorSnackBar(message: state.message, context: context);

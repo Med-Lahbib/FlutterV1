@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../features/posts/presentation/pages/posts_page.dart';
+import '../features/posts/presentation/widgets/posts_page/post_list_widget.dart';
 import '/core/pages/page_not_found.dart';
 import '/features/auth/presentation/bloc/auth/auth_bloc.dart';
 
@@ -53,6 +55,12 @@ class AppRouter {
           name: 'profile',
           builder: (context, state) {
             return ProfilePage();
+          }),
+          GoRoute(
+          path: '/Posts',
+          name: 'Posts',
+          builder: (context, state) {
+            return PostsPage();
           }),
     ],
     errorBuilder: (context, state) => PageNotFound(),
