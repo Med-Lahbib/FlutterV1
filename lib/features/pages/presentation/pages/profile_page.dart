@@ -115,20 +115,39 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Expanded(
 child: ListView.builder(
 itemCount: courses.course.length,
-itemBuilder: (context, index) {
-return Column(
+  itemBuilder: (context, index) {
+    return Column(
+      children: [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           '${courses.course[index]}',
           style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w400,
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        Divider(
-          color: Colors.grey,
+        ElevatedButton(
+          onPressed: () {
+            courses.course.removeAt(index);
+            FirebaseFirestore.instance
+                .collection("courses")
+                .doc(user!.uid)
+                .set(courses.toMap());
+            setState(() {});
+          },
+          child: Text(
+            "X",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
       ],
+    ),
+    Divider(
+      color: Colors.grey,
+    ),
+  ],
     );
 
 },
@@ -170,43 +189,8 @@ return Column(
                         )
                       ],
                     )),
-                    Container(
-                      child: Column(children: [
-                        Text(
-                          'Birthday',
-                          style: TextStyle(
-                              color: Colors.grey[400], fontSize: 14.0),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          'April 7th',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                          ),
-                        )
-                      ]),
-                    ),
-                    Container(
-                        child: Column(
-                      children: [
-                        Text(
-                          'Age',
-                          style: TextStyle(
-                              color: Colors.grey[400], fontSize: 14.0),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          '19 yrs',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                          ),
-                        )
-                      ],
-                    )),
+                    
+                    
                   ],
                 ),
               )))

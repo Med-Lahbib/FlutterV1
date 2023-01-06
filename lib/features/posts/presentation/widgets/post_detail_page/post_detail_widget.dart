@@ -47,7 +47,7 @@ class PostDetailWidget extends StatelessWidget {
           Divider(
             height: 50,
           ),
-          Text(
+          Text("Description :  "+
             post.description!,
             style: TextStyle(
               fontSize: 16,
@@ -56,7 +56,7 @@ class PostDetailWidget extends StatelessWidget {
           Divider(
             height: 50,
           ),
-          Text(
+          Text("By : "+
             post.userId!,
             style: TextStyle(
               fontSize: 10,
@@ -65,7 +65,7 @@ class PostDetailWidget extends StatelessWidget {
           Divider(
             height: 50,
           ),
-          Text(
+          Text("Date : "+
             post.date!,
             style: TextStyle(
               fontSize: 10,
@@ -76,12 +76,12 @@ class PostDetailWidget extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              print("tessssssst ==> " );
+              
 
               db.collection('courses').doc(user!.uid).update({
                 "course": FieldValue.arrayUnion([post.name!])
               });
-              
+
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Successfully Enrolled in this Course')));
               GoRouter.of(context).goNamed("profile");
