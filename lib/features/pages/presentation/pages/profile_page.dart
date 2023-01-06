@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Information",
+                                      "Courses List",
                                       style: TextStyle(
                                         fontSize: 17.0,
                                         fontWeight: FontWeight.w800,
@@ -116,13 +116,21 @@ class _ProfilePageState extends State<ProfilePage> {
 child: ListView.builder(
 itemCount: courses.course.length,
 itemBuilder: (context, index) {
-return Text(
-'${courses.course[index]}',
-style: TextStyle(
-fontSize: 15.0,
-fontWeight: FontWeight.w600,
-),
-);
+return Column(
+      children: [
+        Text(
+          '${courses.course[index]}',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Divider(
+          color: Colors.grey,
+        ),
+      ],
+    );
+
 },
 ),
 ),
@@ -155,7 +163,7 @@ fontWeight: FontWeight.w600,
                           height: 5.0,
                         ),
                         Text(
-                          "4",
+                          '${courses.course.length}',
                           style: TextStyle(
                             fontSize: 15.0,
                           ),
