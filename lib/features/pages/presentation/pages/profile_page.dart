@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projectv1/features/auth/data/models/user_model.dart';
+import '../../../auth/data/models/courses_model.dart';
 import '/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,9 +14,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  User? user = FirebaseAuth.instance.currentUser;
-
+  CoursesModel courses = CoursesModel(course: []);
   UserModel loggedInUser = UserModel(email: '', name: '', password: '');
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
@@ -27,6 +28,15 @@ class _ProfilePageState extends State<ProfilePage> {
         .then((value) {
       var data = value.data();
       loggedInUser = UserModel.fromMap(data!);
+      setState(() {});
+    });
+    FirebaseFirestore.instance
+        .collection("courses")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      var data = value.data();
+      courses = CoursesModel.fromMap(data!);
       setState(() {});
     });
   }
@@ -102,147 +112,20 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Divider(
                                       color: Colors.grey[300],
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.home,
-                                          color: Colors.blueAccent[400],
-                                          size: 35,
-                                        ),
-                                        SizedBox(
-                                          width: 20.0,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "javascript",
-                                              style: TextStyle(
-                                                fontSize: 15.0,
-                                              ),
-                                            ),
-                                            Text(
-                                              "",
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey[400],
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.auto_awesome,
-                                          color: Colors.yellowAccent[400],
-                                          size: 35,
-                                        ),
-                                        SizedBox(
-                                          width: 20.0,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "spring boot",
-                                              style: TextStyle(
-                                                fontSize: 15.0,
-                                              ),
-                                            ),
-                                            Text(
-                                              "",
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey[400],
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.favorite,
-                                          color: Colors.pinkAccent[400],
-                                          size: 35,
-                                        ),
-                                        SizedBox(
-                                          width: 20.0,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "nodeJs",
-                                              style: TextStyle(
-                                                fontSize: 15.0,
-                                              ),
-                                            ),
-                                            Text(
-                                              "",
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey[400],
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.people,
-                                          color: Colors.lightGreen[400],
-                                          size: 35,
-                                        ),
-                                        SizedBox(
-                                          width: 20.0,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "kotlin",
-                                              style: TextStyle(
-                                                fontSize: 15.0,
-                                              ),
-                                            ),
-                                            Text(
-                                              "",
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey[400],
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
+                                    Expanded(
+child: ListView.builder(
+itemCount: courses.course.length,
+itemBuilder: (context, index) {
+return Text(
+'${courses.course[index]}',
+style: TextStyle(
+fontSize: 15.0,
+fontWeight: FontWeight.w600,
+),
+);
+},
+),
+),
                                   ],
                                 ),
                               )))),
