@@ -22,10 +22,6 @@ class PostDetailWidget extends StatelessWidget {
     final db = FirebaseFirestore.instance;
     CoursesModel courses = CoursesModel(course: []);
 
-   
-
-  
-
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
