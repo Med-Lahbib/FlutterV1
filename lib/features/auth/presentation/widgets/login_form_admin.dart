@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projectv1/core/strings/messages.dart';
+import 'package:projectv1/core/strings/admin_password.dart';
 import '/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import '/features/auth/presentation/widgets/auth_btn.dart';
 import 'package:go_router/go_router.dart';

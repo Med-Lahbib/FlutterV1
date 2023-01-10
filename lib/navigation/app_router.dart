@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:projectv1/features/auth/presentation/pages/login_page_admin.dart';
-import 'package:projectv1/features/pages/presentation/pages/admin_page.dart';
+import '../features/auth/presentation/pages/login_page_admin.dart';
+import '../features/pages/presentation/pages/admin_page.dart';
 import '../features/posts/presentation/pages/posts_page.dart';
 import '../features/posts/presentation/widgets/posts_page/post_list_widget.dart';
 import '/core/pages/page_not_found.dart';
@@ -65,19 +65,18 @@ class AppRouter {
           builder: (context, state) {
             return ProfilePage();
           }),
-          GoRoute(
-          path: '/admin',
-          name: 'admin',
-          builder: (context, state) {
-            return AdminPage();
-          }),
-
       GoRoute(
           path: '/Posts',
           name: 'Posts',
           builder: (context, state) {
             return PostsPage();
           }),
+      GoRoute(
+          path: '/admin',
+          name: 'admin',
+          builder: (context, state) {
+            return AdminPage();
+          })
     ],
     errorBuilder: (context, state) => PageNotFound(),
     redirect: (context, state) {

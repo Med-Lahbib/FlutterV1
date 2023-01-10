@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/auth_btn.dart';
 import '/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import '/features/auth/presentation/widgets/login_form.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +17,7 @@ class LoginPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthenticatedState) {
-          GoRouter.of(context).goNamed('profile');
+          GoRouter.of(context).goNamed('Posts');
         } else if (state is AuthErrorState) {
           SnackBarMessage()
               .showErrorSnackBar(message: state.message, context: context);
@@ -27,6 +26,7 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            
             children: <Widget>[
               Container(
                 height: MediaQuery.of(context).size.height / 3,
@@ -39,19 +39,19 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
               ),
               const SizedBox(
-                height: 40,
+                height: 30,
               ),
               LoginForm(),
-
+              
               // ignore: prefer_const_constructors
-              const Text(
+              Text(
                 'Not a member? ',
                 // ignore: prefer_const_constructors
                 style: TextStyle(
                   color: Colors.black87,
                   fontStyle: FontStyle.italic,
                 ),
-                ),
+              ),
               TextButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(
@@ -66,8 +66,9 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.orange,
-                      ))),
-              
+                      )
+                    )
+              ),
               const  Divider(
                  color: Colors.black
               ),
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
 
                 children: <Widget>[
                   const Text(
-                    'Login to admin interface here : ',
+                    "You'd like to sign as administrator ?",
                     // ignore: prefer_const_constructors
                      style: TextStyle(
                      color: Colors.black87,
@@ -95,8 +96,7 @@ class LoginPage extends StatelessWidget {
                     )
                 ],
               )
-    
-             
+
             ]),
       ),
     );

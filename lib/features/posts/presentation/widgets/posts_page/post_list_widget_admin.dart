@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:projectv1/features/posts/presentation/pages/post_detail_page_admin.dart';
 import '../../../domain/entities/post.dart';
 import '../../pages/post_detail_page.dart';
 
-class PostListWidget extends StatefulWidget {
+class PostListWidgetAdmin extends StatefulWidget {
   final List<Post> posts;
-  const PostListWidget({
+  const PostListWidgetAdmin({
     Key? key,
     required this.posts,
   }) : super(key: key);
@@ -13,7 +14,7 @@ class PostListWidget extends StatefulWidget {
   _PostListWidgetState createState() => _PostListWidgetState();
 }
 
-class _PostListWidgetState extends State<PostListWidget> {
+class _PostListWidgetState extends State<PostListWidgetAdmin> {
   final _searchController = TextEditingController();
   String _searchText = "";
 
@@ -56,7 +57,7 @@ class _PostListWidgetState extends State<PostListWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => PostDetailPage(post: posts[index]),
+                        builder: (_) => PostDetailPageAdmin(post: posts[index]),
                       ),
                     );
                   },
@@ -86,15 +87,17 @@ class _PostListWidgetState extends State<PostListWidget> {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              posts[index].description,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            Text(
                               posts[index].date,
                               style: const TextStyle(
                                   fontSize: 10, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
+                            Text(
+                              posts[index].description,
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            const SizedBox(height: 5),
+                            
                           ],
                         ),
                       ],

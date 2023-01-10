@@ -3,11 +3,11 @@ import '../../domain/entities/post.dart';
 class PostModel extends Post {
   const PostModel(
       {int? id,
-      final String? name,
-      final String? userId,
-      final String? description,
-      final String? image,
-      final String? date})
+      required String name,
+      required String userId,
+      required String description,
+      required String image,
+      required String date})
       : super(
             id: id,
             name: name,

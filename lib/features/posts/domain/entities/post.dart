@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 
 class Post extends Equatable {
   final int? id;
-  final String? name;
-  final String? userId;
-  final String? description;
-  final String? image;
-  final String? date;
+  final String name;
+  final String userId;
+  final String description;
+  final String image;
+  final String date;
 
   const Post({
     this.id,

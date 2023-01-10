@@ -1,33 +1,20 @@
+import 'update_post_btn_widget.dart';
 import 'package:flutter/material.dart';
-import '../../../../auth/data/models/courses_model.dart';
-import '../../../domain/entities/post.dart';
-import '/core/firebase/firebase_service.dart';
-import '/features/auth/data/models/user_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:go_router/go_router.dart';
-import 'package:validators/validators.dart';
 
-class PostDetailWidget extends StatelessWidget {
+import '../../../domain/entities/post.dart';
+import 'delete_post_btn_widget.dart';
+
+class PostDetailWidgetAdmin extends StatelessWidget {
   final Post post;
-  const PostDetailWidget({
+  const PostDetailWidgetAdmin({
     Key? key,
     required this.post,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-    final db = FirebaseFirestore.instance;
-    CoursesModel courses = CoursesModel(course: []);
-
-   
-
-  
-
     return Padding(
-      padding: const EdgeInsets.all(8),
+     padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           Text(
@@ -74,25 +61,18 @@ class PostDetailWidget extends StatelessWidget {
           Divider(
             height: 50,
           ),
-          ElevatedButton(
-            onPressed: () {
-  
-              db.collection('courses').doc(user!.uid).update({
-                "course": FieldValue.arrayUnion([post.name])
-              });
-
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Successfully Enrolled in this Course')));
-              GoRouter.of(context).goNamed("profile");
-            },
-            child: Text("Enroll In This Course"),
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              UpdatePostBtnWidget(post: post),
+              DeletePostBtnWidget(postId: post.id!)
+            ],
           )
         ],
       ),
     );
   }
-
 }
+
+
+
